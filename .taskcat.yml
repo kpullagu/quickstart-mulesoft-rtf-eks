@@ -2,14 +2,14 @@ project:
   name: quickstart-mulesoft-rtf-eks
   owner: kpullagu@amazon.com
   regions:
-  - eu-north-1
-  - me-south-1
   - us-east-1
-  - us-east-2
-  - us-west-2
-  template: templates/amazon-eks-master.template.yaml
+  # - eu-north-1
+  # - me-south-1
+  # - us-east-2
+  # - us-west-2
+  template: templates/mulesoft-rtf-new-vpc.template.yaml
   parameters:
-    RemoteAccessCIDR: 10.0.0.0/16
+    RemoteAccessCIDR: 0.0.0.0/0
     QSS3BucketName: $[taskcat_autobucket]
     QSS3BucketRegion: $[taskcat_current_region]
   lambda_source_path: functions/source
@@ -18,8 +18,8 @@ tests:
   defaults:
     parameters:
       AvailabilityZones: $[taskcat_genaz_3]
-      ProvisionBastionHost: Disabled
-      EKSPublicAccessEndpoint: Enabled
+      ProvisionBastionHost: Enabled
+      EKSPublicAccessEndpoint: Disabled
   public-endpoint:
     parameters:
       AvailabilityZones: $[taskcat_genaz_3]
@@ -132,24 +132,24 @@ tests:
       IamOidcProvider: Enabled
       EKSPublicAccessEndpoint: Enabled
       ProvisionBastionHost: Disabled
-  snyk:
-    regions:
-      - eu-west-3
-    parameters:
-      AvailabilityZones: $[taskcat_genaz_3]
-      ProvisionBastionHost: Disabled
-      EKSPublicAccessEndpoint: Enabled
-      SnykIntegration: Enabled
-      SnykIntegrationId: ---overridden---
-  new-relic:
-    regions:
-      - sa-east-1
-    parameters:
-      AvailabilityZones: $[taskcat_genaz_3]
-      ProvisionBastionHost: Disabled
-      EKSPublicAccessEndpoint: Enabled
-      NewRelicIntegration: Enabled
-      NewRelicLicenseKey: ---overridden---
+  # snyk:
+  #   regions:
+  #     - eu-west-3
+  #   parameters:
+  #     AvailabilityZones: $[taskcat_genaz_3]
+  #     ProvisionBastionHost: Disabled
+  #     EKSPublicAccessEndpoint: Enabled
+  #     SnykIntegration: Enabled
+  #     SnykIntegrationId: ---overridden---
+  # new-relic:
+  #   regions:
+  #     - sa-east-1
+  #   parameters:
+  #     AvailabilityZones: $[taskcat_genaz_3]
+  #     ProvisionBastionHost: Disabled
+  #     EKSPublicAccessEndpoint: Enabled
+  #     NewRelicIntegration: Enabled
+  #     NewRelicLicenseKey: ---overridden---
   managed-node-group-ASC:
     parameters:
       AvailabilityZones: $[taskcat_genaz_3]
