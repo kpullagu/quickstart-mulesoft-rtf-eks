@@ -10,7 +10,9 @@ project:
   template: templates/mulesoft-rtf-new-vpc.template.yaml
   parameters:
     RemoteAccessCIDR: 0.0.0.0/0
-    QSS3BucketName: $[taskcat_autobucket]
+    # QSS3BucketName: $[taskcat_autobucket]
+    QSS3BucketName: myquickstart-rtf
+    QSS3KeyPrefix: quickstart-mulesoft-rtf-eks/
     QSS3BucketRegion: $[taskcat_current_region]
   lambda_source_path: functions/source
   lambda_zip_path: functions/packages
@@ -20,6 +22,44 @@ tests:
       AvailabilityZones: $[taskcat_genaz_3]
       ProvisionBastionHost: Enabled
       EKSPublicAccessEndpoint: Disabled
+  eks:
+    parameters:
+      AvailabilityZones: $[taskcat_genaz_3]
+      ProvisionBastionHost: Enabled
+      EKSPublicAccessEndpoint: Disabled
+      KeyPairName: --override--
+      PrivateSubnet1CIDR: 10.0.0.0/19
+      PrivateSubnet2CIDR: 10.0.32.0/19
+      PrivateSubnet3CIDR: 10.0.64.0/19
+      PublicSubnet1CIDR: 10.0.128.0/20
+      PublicSubnet2CIDR: 10.0.144.0/20
+      PublicSubnet3CIDR: 10.0.160.0/20
+      ALBIngressController: Enabled
+      AdditionalEKSAdminUserArn:
+      AdditionalEKSAdminRoleArn:
+      ClusterAutoScaler: Disabled
+      ConfigSetName:
+      EKSClusterName: mule-eks-rtf
+      EfsStorageClass: Disabled
+      FargateLabels:
+      FargateNamespaces:
+      MaxNumberOfNodes: 3
+      MuleSoftAccountID:
+      MuelSoftRtfClusterName:
+      MuleSoftLicense:
+      MuelSoftPassword:
+      MuleSoftUsername:
+      NodeGroupOS: 'Amazon Linux 2'
+      NodeGroupType: Managed
+      NodeInstanceFamily: Standard
+      NodeInstanceType: t3.medium
+      NumberOfAZs: 3
+      NumberOfNodes: 3
+      PerAccountSharedResources: AutoDetect
+      PerRegionSharedResources: AutoDetect
+      VPCCIDR: 10.0.0.0/16
+#      MonitoringStack:
+      TestSuite: Disabled
   public-endpoint:
     parameters:
       AvailabilityZones: $[taskcat_genaz_3]
