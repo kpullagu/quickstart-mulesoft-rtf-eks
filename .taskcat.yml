@@ -38,10 +38,10 @@ tests:
       AdditionalEKSAdminUserArn:
       AdditionalEKSAdminRoleArn:
       ClusterAutoScaler: Disabled
-      ConfigSetName:
+      ConfigSetName: ''
       EKSClusterName: mule-eks-rtf
       EfsStorageClass: Disabled
-      FargateLabels:
+      FargateLabels: 
       FargateNamespaces:
       MaxNumberOfNodes: 3
       MuleSoftAccountID:
@@ -58,7 +58,7 @@ tests:
       PerAccountSharedResources: AutoDetect
       PerRegionSharedResources: AutoDetect
       VPCCIDR: 10.0.0.0/16
-#      MonitoringStack:
+      # MonitoringStack:
       TestSuite: Disabled
   public-endpoint:
     parameters:
