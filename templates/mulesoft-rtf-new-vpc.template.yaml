@@ -851,7 +851,7 @@ Resources:
         # ConsulUIACMSSLCertificateArn: !Ref ConsulUIACMSSLCertificateArn
         # ConsulUIHostedZoneID: !Ref ConsulUIHostedZoneID
         # ConsulUIDomainName: !Ref ConsulUIDomainName
-        # ConfigSetName: !If [CreateAdvancedConfigWithDefaults, !Ref 'AWS::StackName', !Ref ConfigSetName]
+        ConfigSetName: !If [CreateAdvancedConfigWithDefaults, !Ref 'AWS::StackName', !Ref ConfigSetName]
         # TestSuite: !Ref TestSuite
         # CalicoIntegration: !Ref CalicoIntegration
         # RafaySysIntegration: !Ref RafaySysIntegration
